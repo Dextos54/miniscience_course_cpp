@@ -1,0 +1,7 @@
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/sampleCube.dir
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/sampleCircle.dir
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/sampleCylinder.dir
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/sample1.dir
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/sample2.dir
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/edit_cache.dir
+/home/anna/projects/school/sem4/miniscience_course_cpp/laba_1/build/CMakeFiles/rebuild_cache.dir
