@@ -19,12 +19,42 @@ int main(int argc, char **argv)
   // Let's merge an STL mesh that we would like to remesh (from the parent
   // directory):
   try {
-    gmsh::merge("../Whale.stl");
+    gmsh::merge("../XYZCalibrationCube20mm.stl");
   } catch(...) {
     gmsh::logger::write("Could not load STL mesh: bye!");
     gmsh::finalize();
     return 0;
   }
+  gmsh::option::setNumber("Mesh.MeshSizeFactor", 0.3);
+
+  double angle = 40;
+
+  // For complex geometries, patches can be too complex, too elongated or too
+  // large to be parametrized; setting the following option will force the
+  // creation of patches that are amenable to reparametrization:
+  bool forceParametrizablePatches = false;
+
+  // For open surfaces include the boundary edges in the classification process:
+  bool includeBoundary = true;
+
+  // Force curves to be split on given angle:
+  double curveAngle = 180;
+
+  gmsh::model::mesh::classifySurfaces(angle * M_PI / 180., includeBoundary,
+                                      forceParametrizablePatches,
+                                      curveAngle * M_PI / 180.);
+
+  // Create a geometry for all the discrete curves and surfaces in the mesh, by
+  // computing a parametrization for each one
+  gmsh::model::mesh::createGeometry();
+
+  // Create a volume from all the surfaces
+  std::vector<std::pair<int, int> > s;
+  gmsh::model::getEntities(s, 2);
+  std::vector<int> sl;
+  for(auto surf : s) sl.push_back(surf.second);
+  int l = gmsh::model::geo::addSurfaceLoop(sl);
+  gmsh::model::geo::addVolume({l});
 
   
 
